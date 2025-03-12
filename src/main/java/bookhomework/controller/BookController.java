@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/bookhomework")
+@RequestMapping("/book")
 public class BookController {
     @Autowired
     private BookService bookService;
@@ -28,10 +28,10 @@ public class BookController {
     }
 
     @DeleteMapping("")
-    boolean 책삭제(int 번호) {
+    boolean 책삭제(int 번호, @RequestParam String 비밀번호) {
         System.out.println("BookController.책삭제");
-        System.out.println("번호 = " + 번호);
-        return bookService.책삭제(번호);
+        System.out.println("번호 = " + 번호 + ", 비밀번호 = " + 비밀번호);
+        return bookService.책삭제(번호, 비밀번호);
     }
 
     @GetMapping("")

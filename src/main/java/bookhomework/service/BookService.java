@@ -24,10 +24,10 @@ public class BookService {
         return bookMapper.책수정(bookDto);
     }
 
-    public boolean 책삭제(int 번호) {
+    public boolean 책삭제(int 번호, String 비밀번호) {
         System.out.println("BookService.책삭제");
-        System.out.println("번호 = " + 번호);
-        return bookMapper.책삭제(번호);
+        System.out.println("번호 = " + 번호 + ", 비밀번호 = " + 비밀번호);
+        return bookMapper.책삭제(번호, 비밀번호);
     }
 
     public List<BookDto> 책전체조회() {
