@@ -3,36 +3,32 @@ import { Box, Input, Button, Typography, Textarea, Modal } from '@mui/joy';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-export default function BookCreate(props) {
+export default function ReviewCreate(props) {
     const navigate = useNavigate();
 
-    const [book, setBook] = useState({
-        번호: '',
-        제목: '',
-        저자: '',
-        소개: '',
-        비밀번호: '',
+    const [review, setReview] = useState({
+        책번호: '',
+        감상평: '',
+        비밀번호: ''
     });
     const [open, setOpen] = useState(false); // 모달 닫힘 상태
     const [message, setMessage] = useState(''); // 성공 또는 실패 메시지
 
     const handleChange = (e) => {
-        setBook({ ...book, [e.target.name]: e.target.value });
+        setReview({ ...review, [e.target.name]: e.target.value });
     };
 
     const handleSubmit = async () => {
-        console.log("입력된 데이터:", book);
-
         try {
-            const response = await axios.put(`http://localhost:8080/book`, book);
+            const response = await axios.post(`http://localhost:8080/book/review`, review);
 
-            if (response.data === 1) {
-                setMessage('성공적으로 수정되었습니다.');
+            if (response.data === true) {
+                setMessage('성공적으로 등록되었습니다.');
             } else {
-                setMessage('수정 실패했습니다.');
+                setMessage('등록 실패했습니다.');
             }
         } catch (error) {
-            setMessage('수정정 요청 중 오류가 발생했습니다.');
+            setMessage('등록 요청 중 오류가 발생했습니다.');
         }
 
         // 모달 열기
@@ -46,56 +42,39 @@ export default function BookCreate(props) {
 
     return (
         <Box sx={{ maxWidth: 400, mx: 'auto', mt: 4, p: 3, border: '1px solid #ccc', borderRadius: '8px' }}>
-            <Typography level="h4" sx={{ mb: 2 }}>책추천 수정</Typography>
+            <Typography level="h4" sx={{ mb: 2 }}>책리뷰 등록</Typography>
 
             <Input
-                placeholder="번호"
-                name="번호"
-                value={book.번호}
+                placeholder="책번호"
+                name="책번호"
+                value={review.책번호}
                 onChange={handleChange}
                 sx={{ mb: 2 }}
                 required
             />
             <Input
-                placeholder="제목"
-                name="제목"
-                value={book.제목}
+                placeholder="감상평"
+                name="감상평"
+                value={review.감상평}
                 onChange={handleChange}
                 sx={{ mb: 2 }}
-                required
-            />
-            <Input
-                placeholder="저자"
-                name="저자"
-                value={book.저자}
-                onChange={handleChange}
-                sx={{ mb: 2 }}
-                required
-            />
-            <Textarea
-                placeholder="소개"
-                name="소개"
-                value={book.소개}
-                onChange={handleChange}
-                sx={{ mb: 2 }}
-                minRows={3}
                 required
             />
             <Input
                 placeholder="비밀번호"
                 name="비밀번호"
                 type="password"
-                value={book.비밀번호}
+                value={review.비밀번호}
                 onChange={handleChange}
                 sx={{ mb: 2 }}
                 required
             />
-            <Button onClick={handleSubmit} sx={{ width: '100%' }}>수정</Button>
+            <Button onClick={handleSubmit} sx={{ width: '100%' }}>등록</Button>
 
-            {/* 수정 결과 모달 */}
+            {/* 등록 결과 모달 */}
             <Modal open={open} onClose={handleClose}>
                 <Box sx={{ padding: 4, backgroundColor: 'white', borderRadius: '8px', maxWidth: '400px', margin: 'auto' }}>
-                    <Typography level="h6">수정 결과</Typography>
+                    <Typography level="h6">등록 결과</Typography>
                     <Typography sx={{ marginTop: 2 }}>{message}</Typography>
                     <Button variant="outlined" color="primary" onClick={handleClose} sx={{ marginTop: 2 }}>
                         닫기

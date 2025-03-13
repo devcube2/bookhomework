@@ -18,13 +18,13 @@ public class BookService {
         return bookMapper.책등록(bookDto);
     }
 
-    public boolean 책수정(BookDto bookDto) {
+    public int 책수정(BookDto bookDto) {
         System.out.println("BookService.책수정");
         System.out.println("bookDto = " + bookDto);
         return bookMapper.책수정(bookDto);
     }
 
-    public boolean 책삭제(int 번호, String 비밀번호) {
+    public int 책삭제(int 번호, String 비밀번호) {
         System.out.println("BookService.책삭제");
         System.out.println("번호 = " + 번호 + ", 비밀번호 = " + 비밀번호);
         return bookMapper.책삭제(번호, 비밀번호);
@@ -35,7 +35,7 @@ public class BookService {
         return bookMapper.책전체조회();
     }
 
-    public BookDto 책상세조회(int 번호) {
-        return bookMapper.책상세조회(번호);
-    }
+//    public BookDto 책상세조회(int 번호) {
+//        return bookMapper.책상세조회(번호);
+//    }
 }

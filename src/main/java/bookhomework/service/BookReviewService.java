@@ -18,14 +18,15 @@ public class BookReviewService {
         return bookReviewMapper.리뷰등록(bookReviewDto);
     }
 
-    public boolean 리뷰삭제(int 번호, String 비밀번호) {
+    public int 리뷰삭제(int 번호, String 비밀번호) {
         System.out.println("BookReviewService.리뷰삭제");
         System.out.println("번호 = " + 번호 + ", 비밀번호 = " + 비밀번호);
         return bookReviewMapper.리뷰삭제(번호, 비밀번호);
     }
 
-    public List<BookReviewDto> 리뷰전체조회() {
-        System.out.println("BookReviewService.리뷰전체조회");
-        return bookReviewMapper.리뷰전체조회();
+    public List<BookReviewDto> 리뷰조회(int 번호) {
+        System.out.println("BookReviewService.리뷰조회");
+        System.out.println("번호 = " + 번호);
+        return bookReviewMapper.리뷰조회(번호);
     }
 }

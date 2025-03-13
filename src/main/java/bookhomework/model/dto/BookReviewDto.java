@@ -9,7 +9,7 @@ import lombok.*;
 @NoArgsConstructor
 public class BookReviewDto {
     private int 번호;
-    private String 감상평;
     private String 책번호;
+    private String 감상평;
     private String 비밀번호;
 }

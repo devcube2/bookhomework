@@ -12,7 +12,8 @@ import java.util.List;
 public class BookController {
     @Autowired
     private BookService bookService;
-    
+
+    @CrossOrigin(origins = "http://localhost:5173")
     @PostMapping("")
     boolean 책등록(@RequestBody BookDto bookDto) {
         System.out.println("BookController.책등록");
@@ -20,15 +21,17 @@ public class BookController {
         return bookService.책등록(bookDto);
     }
 
+    @CrossOrigin(origins = "http://localhost:5173")
     @PutMapping("")
-    boolean 책수정(@RequestBody BookDto bookDto) {
+    int 책수정(@RequestBody BookDto bookDto) {
         System.out.println("BookController.책수정");
         System.out.println("bookDto = " + bookDto);
         return bookService.책수정(bookDto);
     }
 
+    @CrossOrigin(origins = "http://localhost:5173")
     @DeleteMapping("")
-    boolean 책삭제(int 번호, @RequestParam String 비밀번호) {
+    int 책삭제(int 번호, @RequestParam String 비밀번호) {
         System.out.println("BookController.책삭제");
         System.out.println("번호 = " + 번호 + ", 비밀번호 = " + 비밀번호);
         return bookService.책삭제(번호, 비밀번호);
@@ -41,10 +44,11 @@ public class BookController {
         return bookService.책전체조회();
     }
 
-    @GetMapping("/view")
-    BookDto 책상세조회(int 번호) {
-        System.out.println("BookController.책상세조회");
-        System.out.println("번호 = " + 번호);
-        return bookService.책상세조회(번호);
-    }
+//    @CrossOrigin(origins = "http://localhost:5173")
+//    @GetMapping("/view")
+//    BookDto 책상세조회(int 번호) {
+//        System.out.println("BookController.책상세조회");
+//        System.out.println("번호 = " + 번호);
+//        return bookService.책상세조회(번호);
+//    }
 }
