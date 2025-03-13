@@ -34,6 +34,7 @@ public class BookController {
         return bookService.책삭제(번호, 비밀번호);
     }
 
+    @CrossOrigin(origins = "http://localhost:5173")
     @GetMapping("")
     List<BookDto> 책전체조회() {
         System.out.println("BookController.책전체조회");
